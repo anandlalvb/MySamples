@@ -1,0 +1,146 @@
+
+
+Jenkins/MAC
+http://goodliffe.blogspot.in/2011/09/how-to-set-up-jenkins-ci-on-mac.html
+https://nickcharlton.net/posts/installing-jenkins-osx-yosemite.html
+http://www.cimgf.com/2015/05/26/setting-up-jenkins-ci-on-a-mac-2/
+
+Jenkins/Android
+https://www.digitalocean.com/community/tutorials/how-to-build-android-apps-with-jenkins
+
+
+Jenkins/MAC/iOS/Android
+http://blog.denivip.ru/index.php/2014/01/how-to-configure-jenkins-ci-on-mac-os-x-to-build-android-and-ios-phonegapcordova-apps-and-deliver-them-to-testflighthockeyapp/?lang=en
+
+Jenkins/Ubuntu/Android
+http://www.vogella.com/tutorials/Jenkins/article.html#ci
+
+Jenkins/iOS
+http://savvyapps.com/blog/continuous-integration-ios-jenkins
+https://wiki.jenkins-ci.org/display/JENKINS/Xcode+Plugin
+https://www.built.io/blog/2014/10/how-to-set-up-customized-jenkins-for-ios/
+
+Jenkins/Github
+http://fourkitchens.com/blog/article/trigger-jenkins-builds-pushing-github
+https://www.cloudbees.com/blog/better-integration-between-jenkins-and-github-github-jenkins-plugin
+
+
+Commands
+sudo launchctl unload -w /Library/LaunchDaemons/org.jenkins-ci.plist
+sudo launchctl load -w /Library/LaunchDaemons/org.jenkins-ci.plist
+
+launchctl unload -w /Library/LaunchDaemons/org.jenkins-ci.plist
+launchctl load -w /Library/LaunchDaemons/org.jenkins-ci.plist
+
+Users
+dscl . list /Users | grep -v '^_'
+
+
+sudo dscl . create /Users/jenkins home /Users/Shared/Jenkins/Home/
+sudo dscl . create /Users/jenkins NFSHomeDirectory /Users/Shared/Jenkins/Home/
+sudo dscl . passwd /Users/jenkins
+
+
+-----
+
+
+
+export ANDROID_HOME=/Users/anandlal/Library/Android/sdk
+export GRADLE_HOME="/Applications/Android\ Studio.app/Contents/gradle/gradle-2.8"
+export PATH="$GRADLE_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH:usr/local/bin"
+
+
+dseditgroup -o create -n . -u anandlal -p -r ‘Applications’ applications
+
+sudo dscl . -create /Users/jenkins RealName "Jenkins"
+
+
+
+-----
+
+/Applications/Android\ Studio.app/Contents/gradle/gradle-2.8//bin:
+/Users/anandlal/Library/Android/sdk/tools:
+/Users/anandlal/Library/Android/sdk/platform-tools:
+/Users/anandlal/Library/Android/sdk/tools:
+/Users/anandlal/Library/Android/sdk/platform-tools:
+/Users/anandlal/Library/Android/sdk/tools:
+/Users/anandlal/Library/Android/sdk/platform-tools:
+/Users/anandlal/Library/Android/sdk/tools:
+/Users/anandlal/Library/Android/sdk/platform-tools:
+/Users/anandlal/Library/Android/sdk/tools:
+/Users/anandlal/Library/Android/sdk/platform-tools:
+/usr/local/bin:
+/usr/bin:
+/bin:
+/usr/sbin:
+/sbin:
+/usr/local/bin:
+/usr/local/bin:
+/usr/local/bin:
+/usr/local/bin:
+/usr/local/bin
+
+
+
+export ANDROID_SDK=/Users/lmnapp/android-sdk-macosx/platforms=
+
+Check disk Usage
+
+df -h
+
+Foder size
+du -sch
+
+Largest file
+find . -type f -printf "%s\t%p\n" | sort -n | tail -1
+
+
+
+Android Installation
+
+android list sdk
+
+for install all packages:
+
+android update sdk --no-ui
+
+Or with filters (comma is separator):
+
+android update sdk --no-ui --filter 3,5,8,14
+
+Linux Env Variable
+
+printenv
+
+vi ~/.profile
+source ~/.profile
+ 
+export ANDROID_HOME=/var/lib/jenkins/tools/android-sdk-linux
+export PATH="$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
+
+
+
+For Ubuntu Linux (For fixing aapt error)
+sudo apt-get install lib32stdc++6 lib32z1
+
+
+Scroll down to see the Post-build Actions section.
+Click on "Add post-build action" button to see the drop down list.
+Click on "Archive the artifacts", and this will add one item in Post build actions section.
+Give the path and extension of which files you need to display in artifacts section of dashboard. 
+Ex: /bin/*.apk - to display all the apk files available in bin folder of that job.
+
+
+chmod +x gradlew
+./gradlew clean build
+
+
+References
+https://www.digitalocean.com/community/tutorials/how-to-build-android-apps-with-jenkins
+http://www.vogella.com/tutorials/Jenkins/article.html#android_jenkinsbuild1
+
+
+
+https://sites.google.com/a/android.com/tools/tech-docs/new-build-system/tips
+./gradlew clean assemble -PdisablePreDex 
+./gradlew clean assembleDebug -PdisablePreDex -> Check will 1) clean output folder 2) build app-debug.apk 3) run test
