@@ -1,6 +1,4 @@
-	
-
-Jenkins/MAC
+Jenkins/MAC Commands
 http://goodliffe.blogspot.in/2011/09/how-to-set-up-jenkins-ci-on-mac.html
 https://nickcharlton.net/posts/installing-jenkins-osx-yosemite.html
 http://www.cimgf.com/2015/05/26/setting-up-jenkins-ci-on-a-mac-2/
