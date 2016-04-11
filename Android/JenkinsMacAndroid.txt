@@ -1,4 +1,4 @@
-
+	
 
 Jenkins/MAC
 http://goodliffe.blogspot.in/2011/09/how-to-set-up-jenkins-ci-on-mac.html
@@ -94,8 +94,6 @@ du -sch
 Largest file
 find . -type f -printf "%s\t%p\n" | sort -n | tail -1
 
-
-
 Android Installation
 
 android list sdk
@@ -117,7 +115,6 @@ source ~/.profile
  
 export ANDROID_HOME=/var/lib/jenkins/tools/android-sdk-linux
 export PATH="$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
-
 
 
 For Ubuntu Linux (For fixing aapt error)
@@ -144,3 +141,7 @@ http://www.vogella.com/tutorials/Jenkins/article.html#android_jenkinsbuild1
 https://sites.google.com/a/android.com/tools/tech-docs/new-build-system/tips
 ./gradlew clean assemble -PdisablePreDex 
 ./gradlew clean assembleDebug -PdisablePreDex -> Check will 1) clean output folder 2) build app-debug.apk 3) run test
+
+*.idea
+.gradle
+build
